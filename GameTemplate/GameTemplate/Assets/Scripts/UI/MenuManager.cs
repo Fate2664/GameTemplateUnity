@@ -1,0 +1,34 @@
+    using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class MenuManager : MonoBehaviour
+{
+    //This script manages the main menu
+    public void StartGame()
+    {
+        AudioManager.Instance?.PlaySFX("GameplayMusic");
+        AudioManager.Instance?.StopSFX("MenuMusic");
+        SceneManager.LoadScene("Level 1");
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+    public void LoadSettingsMenu()
+    {
+        SceneManager.LoadScene("SettingsScreen");
+    }
+
+    public void LoadLeaderboard()
+    {
+        SceneManager.LoadScene("LeaderBoard");
+    }
+
+
+
+}
