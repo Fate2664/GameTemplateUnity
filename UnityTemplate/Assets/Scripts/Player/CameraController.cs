@@ -1,26 +1,34 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    //This script is used to control the camera behavior as to follow the player in a third person look
-    private Transform player;
+    [Header("References")]
+    [SerializeField] private Transform player;
+    [SerializeField] private Transform orientation;
+    [SerializeField] private Transform playerObj;
+    [SerializeField] private Rigidbody rb;
 
-    public float yOffset = 5f;
-    public float zOffset = -25f;
+    [SerializeField] private float rotationSpeed;
 
-    void Start()
+    private void Start()
     {
-        if (player == null)
-        {
-            player = GameObject.FindWithTag("Player").transform;    //get the player's position
-        }
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
-    void LateUpdate()
+    private void Update()
     {
-        if (player != null)
+        Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
+        orientation.forward = viewDir.normalized;
+
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+        Vector3 inputDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
+
+        if (inputDir != Vector3.zero)
         {
-            transform.position = new Vector3(player.position.x, player.position.y + yOffset, player.position.z - zOffset);  //position the camera behind the player's position after each frame
+            playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, rotationSpeed * Time.deltaTime);
         }
     }
 }

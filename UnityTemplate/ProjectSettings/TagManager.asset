@@ -4,18 +4,7 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - Obstacle
-  - ObstacleTrigger
-  - StaticObstacleTrigger
-  - RoadSpawn
-  - MovingObstacleTrigger
-  - Player Nose
   - Player Hitbox
-  - PickupManager
-  - NoSpawnTrigger
-  - SlowVolume
-  - TrafficSpawner
-  - Audio
   layers:
   - Default
   - TransparentFX
