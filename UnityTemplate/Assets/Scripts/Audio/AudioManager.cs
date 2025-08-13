@@ -31,8 +31,13 @@ public class AudioManager : MonoBehaviour
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
         }
-        PlaySFX("MenuMusic");  // Play the menu music on start
 
+    }
+
+    public bool IsPlaying(string name)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        return s != null && s.source.isPlaying;
     }
 
     // Method to play a specific sound effect

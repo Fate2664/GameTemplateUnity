@@ -39,8 +39,6 @@ public class SettingsManager : MonoBehaviour
     }
 
 
-  
-
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -128,8 +126,9 @@ public class SettingsManager : MonoBehaviour
                 setting.ResetToDefault();
             }
         }
-        PlayerPrefs.Save();
+        SaveAllSettings();
         menu.SettingsList.Refresh();
+        LoadAllSettings();
     }
 
     public void LoadAllSettings()
