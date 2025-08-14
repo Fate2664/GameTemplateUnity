@@ -13,7 +13,17 @@ MonoBehaviour:
   m_Name: Keybinds
   m_EditorClassIdentifier: 
   Category: Keybinds
-  Settings: []
+  Settings:
+  - rid: 2518730786922561619
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 2518730786922561619
+      type: {class: KeybindSetting, ns: , asm: Assembly-CSharp}
+      data:
+        Key: MoveForward
+        Name: MoveForward
+        Order: 0
+        Type: 3
+        DefaultKey: 119
+        BoundKey: 119

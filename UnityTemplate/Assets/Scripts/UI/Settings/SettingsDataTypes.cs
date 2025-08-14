@@ -143,3 +143,30 @@ public class ResolutionSetting : MultiOptionSetting
         return Resolutions[Mathf.Clamp(selectedIndex, 0, Resolutions.Length - 1)];
     }
 }
+
+[System.Serializable]
+public class KeybindSetting : Setting
+{
+    public SettingType Type = SettingType.Keybinds;
+    public KeyCode DefaultKey;
+    public KeyCode BoundKey;
+    public event Action<Setting> OnKeyChanged;
+
+    public KeyCode Key
+    {
+        get => BoundKey;
+        set         {
+            BoundKey = value;
+            OnKeyChanged?.Invoke(this);
+        }
+    }
+    public void Save() => PlayerPrefs.SetInt(Key.ToString(), (int)BoundKey);
+    public void Load() => BoundKey = (KeyCode)PlayerPrefs.GetInt(Key.ToString(), (int)DefaultKey);
+
+    public override void ResetToDefault()
+    {
+        BoundKey = DefaultKey;
+        Save();
+    }
+    
+}

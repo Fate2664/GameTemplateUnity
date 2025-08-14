@@ -13,6 +13,7 @@ public class SettingsManager : MonoBehaviour
     public SettingsCollection GameplayCollection;
     public SettingsCollection AccessibilityCollection;
     public SettingsCollection VideoCollection;
+    public SettingsCollection KeyBindsCollection;
 
     private SettingsMenu menu;
     private Dictionary<string, Setting> settingsLookup;
@@ -32,6 +33,7 @@ public class SettingsManager : MonoBehaviour
     {
         settingsLookup = new Dictionary<string, Setting>();
 
+        AddSettingsFromCollection(KeyBindsCollection);
         AddSettingsFromCollection(AudioCollection);
         AddSettingsFromCollection(GameplayCollection);
         AddSettingsFromCollection(AccessibilityCollection);
